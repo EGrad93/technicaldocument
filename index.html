@@ -1,0 +1,108 @@
+<div class='main-body'>
+
+  <nav id="navbar">
+    <header>
+      Solidity Documentation
+    </header>
+      <a href="#Introduction" class="nav-link">Introduction</a>
+      <a href="#JavaScript" class="nav-link">Solidity</a>
+      <a href="#Variables" class="nav-link">Variables</a>
+      <a href="#Scope" class="nav-link">Scope</a>
+      <a href="#Functions" class="nav-link">Functions</a>
+    </nav>
+
+  <main id="main-doc">
+    <section class="main-section" id='Introduction'>
+      <header>
+        Introduction
+      </header>
+      <p>Solidity is an object-oriented, high-level language for implementing smart contracts. Smart contracts are programs which govern the behaviour of accounts within the Ethereum state.</p>
+      <p>Solidity was influenced by C++, Python and JavaScript and is designed to target the Ethereum Virtual Machine (EVM).
+
+Solidity is statically typed, supports inheritance, libraries and complex user-defined types among other features. With Solidity you can create contracts for uses such as: voting, crowdfunding, blind auctions, and multi-signature wallets.</p>
+
+      <ul>
+        <li>voting</li>
+        <li>crowdfunding</li>
+        <li>blind auctions</li>
+        <li>multi-signature wallets</li>
+      </ul>
+    </section>
+    <section class="main-section" id='Solidity'>
+      <header>
+        Solidity
+      </header>
+      <p>Contracts in Solidity are similar to classes in object-oriented languages. They contain persistent data in state variables and functions that can modify these variables. Calling a function on a different contract (instance) will perform an EVM function call and thus switch the context such that state variables are inaccessible. A contract and its functions need to be called for anything to happen. There is no “cron” concept in Ethereum to call a function at a particular event automatically.</p>
+      <p>Contracts can be created “from outside” via Ethereum transactions or from within Solidity contracts.
+
+IDEs, such as Remix, make the creation process seamless using UI elements.
+
+Creating contracts programmatically on Ethereum is best done via using the JavaScript API web3.js. It has a function called web3.eth.Contract to facilitate contract creation.</p>
+      <code>function greetMe(yourName) {
+  alert("Hello " + yourName);
+}
+greetMe("World");</code>
+      <ul>
+        <li>Variables</li>
+        <li>Functions</li>
+        <li>Contracts</li>
+        <li>Security</li>
+        <li>Breaking Changes</li>
+      </ul>
+    </section>
+    <section class="main-section" id='Variables'>
+      <header>
+        Variables
+      </header>
+      <p>Global variables are in fact properties of the global object. In web pages the global object is window, so you can set and access global variables using the window.variable syntax.</p>
+      <p>A literal number can take a suffix of wei, finney, szabo or ether to specify a subdenomination of Ether, where Ether numbers without a postfix are assumed to be Wei.</p>
+      <code>1 == 1 seconds
+1 minutes == 60 seconds
+1 hours == 60 minutes
+1 days == 24 hours
+1 weeks == 7 days</code>
+      <code>assert(1 wei == 1);
+assert(1 szabo == 1e12);
+assert(1 finney == 1e15);
+assert(1 ether == 1e18);
+}
+</code>
+   </section>
+    <section class="main-section" id='Scope'>
+      <header>
+        Scope
+      </header>
+      <p>You can interleave Solidity statements with inline assembly in a language close to the one of the virtual machine. This gives you more fine-grained control, especially when you are enhancing the language by writing libraries.</p>
+      <p>As the EVM is a stack machine, it is often hard to address the correct stack slot and provide arguments to opcodes at the correct point on the stack. Solidity’s inline assembly helps you do this, and with other issues that arise when writing manual assembly.</p>
+      <code>let x := add(2, 3)  let y := mload(0x40)  x := add(x, y)</code>
+   </section>
+
+    <section class="main-section" id='Functions'>
+      <header>
+        Functions
+      </header>
+      <p>Functions are the executable units of code within a contract</p>
+      <p>Function modifiers can be used to amend the semantics of functions in a declarative way.</p>
+      <code>
+contract SimpleAuction {
+    event HighestBidIncreased(address bidder, uint amount); // Event
+
+    function bid() public payable {
+        // ...
+        emit HighestBidIncreased(msg.sender, msg.value); // Triggering event
+    }
+}</code>
+      <code>pragma solidity >=0.4.0 0.6.0;
+
+contract Purchase {
+    enum State { Created, Locked, Inactive } // Enum
+}</code>
+<section class="main-section" id="Reference">
+    <header>Reference</header>
+    <article>
+      <li>All the documentation in this page is taken from <a href="https://solidity.readthedocs.io/en/v0.5.3/index.html" target="_blank">Solidity<a>
+    </article>
+      
+    </section>
+  </main>
+</div>
